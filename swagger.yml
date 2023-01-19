@@ -1,0 +1,147 @@
+swagger: "2.0"
+info:
+  description: Swagger file
+  version: "1.0.0"
+  title: Swagger ReST Medicamentos
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /api
+
+paths:
+  /medicamentos:
+    get:
+      operationId: medicamentos.read_all
+      tags:
+        - Medicamentos
+      summary: Lista de Medicamentos
+      description: Lista de Medicamentos
+      responses:
+        200:
+          description: Sucesso na leitura de Medicamentos
+          schema:
+            type: array
+            items:
+              properties:
+                medicamento:
+                  type: string
+                fabricante:
+                  type: string
+                generico:
+                  type: string
+                dosagem:
+                  type: string
+                relacao:
+                  type: string
+                timestamp:
+                  type: string
+    post:
+      operationId: medicamentos.create
+      tags:
+        - Medicamentos
+      summary: Cria um Medicamento e adiciona na lista de Medicamentos
+      description: Adiciona Medicamento na lista de Medicamentos
+      parameters:
+        - name: medic
+          in: body
+          description: Medicamento a ser criado
+          required: True
+          schema:
+            type: object
+            properties:
+              medicamento:
+                type: string
+                description: Medicamento
+              fabricante:
+                type: string
+                description: Fabricante
+              generico:
+                type: string
+                description: Genérico
+              dosagem:
+                type: string
+                description: Dosagem
+              relacao:
+                type: string
+                description: Relação
+      responses:
+        201:
+          description: Sucesso ao criar
+  /medicamentos/{medicamento}:
+    get:
+      operationId: medicamentos.read_one
+      tags:
+        - Medicamentos
+      summary: Leitura de um medicamento da lista de Medicamentos
+      description: Leitura de uma medicamento
+      parameters:
+        - name: medicamento
+          in: path
+          description: Medicamento
+          type: string
+          required: True
+      responses:
+        200:
+          description: Sucesso na leitura de um medicamento
+          schema:
+            properties:
+              medicamento:
+                type: string
+              fabricante:
+                type: string
+              generico:
+                type: string
+              dosagem:
+                type: string
+              relacao:
+                type: string
+              timestamp:
+                type: string
+    put:
+      operationId: medicamentos.update
+      tags:
+        - Medicamentos
+      summary: Update medicamento na lista de Medicamentos
+      description: Update na lista
+      parameters:
+        - name: medicamento
+          in: path
+          description: Medicamento
+          type: string
+          required: True
+        - name: medic
+          in: body
+          schema:
+            type: object
+            properties:
+              medicamento:
+                type: string
+              fabricante:
+                type: string
+              generico:
+                type: string
+              dosagem:
+                type: string
+              relacao:
+                type: string
+      responses:
+        200:
+          description: Sucesso ao atualizar
+
+    delete:
+      operationId: medicamentos.delete
+      tags:
+        - Medicamentos
+      summary: Deletar um medicamento na lista de Medicamentos
+      description: Deleta um medicamento
+      parameters:
+        - name: medicamento
+          in: path
+          type: string
+          required: True
+      responses:
+        200:
+          description: Sucesso ao deletar
+

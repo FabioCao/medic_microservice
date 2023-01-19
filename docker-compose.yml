@@ -1,0 +1,23 @@
+services:
+  server:
+    container_name: medic-microservice
+    build: '.'
+    depends_on:
+      - db
+    links:
+      - db
+    ports:
+      - '5052:5000'
+    networks:
+      - host
+
+  db:
+    image: 'mongo'
+    container_name: mongo3
+    ports:
+      - '27019:27017'
+    networks:
+      - host 
+networks: 
+  host:
+    driver: NETINSUL
